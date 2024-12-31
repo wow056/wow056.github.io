@@ -1,6 +1,5 @@
-// import GitHub from "@/app/icons/github.svg";
-// import LinkedIn from "@/app/icons/linkedin.svg";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -31,10 +30,22 @@ export default function Home() {
           </div>
           <div className="flex justify-start items-start gap-5">
             <Link href={"https://github.com/wow056"}>
-              {/* <GitHub /> */}
+              <Image
+                src="/github.svg"
+                alt="Github logo"
+                width={60}
+                height={60}
+                priority
+              />
             </Link>
             <Link href={"https://www.linkedin.com/in/minsu-kang-0821a2140/"}>
-              {/* <LinkedIn /> */}
+              <Image
+                src="/linkedin.svg"
+                alt="LinkedIn logo"
+                width={60}
+                height={60}
+                priority
+              />
             </Link>
           </div>
         </div>
