@@ -4,6 +4,7 @@ import { Minus } from "lucide-react";
 import { Career, careers } from "./career";
 import { projects } from "./projects";
 import { skills } from "./skills";
+import { educations } from "./education";
 
 export default function Home() {
   return (
@@ -178,33 +179,32 @@ export default function Home() {
             ))}
           </div>
         </article>
-        <article className="flex flex-col min-h-screen bg-[#DFDFDF]">
+        <article className="flex flex-col bg-[#DFDFDF]">
           <Section num={"05"} title={"Education"} />
           <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%] py-[120px]">
             <div className="flex flex-col justify-start items-start border-t border-b border-black divide-y divide-black">
-              {careers.map((value, index) => (
-                <div className="flex w-full py-7" key={index}>
-                  <div className="w-[150px] font-semibold text-[14px] leading-[1.1em] shrink-0">
-                    {getPeriodString(value)}
-                  </div>
-                  <div className="flex flex-col">
-                    <div className="font-bold text-[18px] leading-[1.1em]">
-                      {value.title}
-                    </div>
-                    {(value.team !== undefined ||
-                      value.position !== undefined) && (
-                      <div className="mt-2 font-semibold text-[16px] leading-[1.1em]">
-                        {[value.team, value.position]
-                          .filter((value) => value !== undefined)
-                          .join(" / ")}
+              {educations.map((education, educationIndex) => (
+                <div
+                  className="flex flex-col w-full py-7 gap-4"
+                  key={educationIndex}
+                >
+                  <h3 className="ml-[150px] text-[18px] font-bold">
+                    {education.title}
+                  </h3>
+                  <div className="flex flex-col gap-[9px]">
+                    {education.events.map((eventValue, eventIndex) => (
+                      <div
+                        key={eventIndex}
+                        className="flex flex-row w-full items-center leading-[1.1em] "
+                      >
+                        <div className="w-[150px] font-semibold text-[14px] leading-[1.1em] shrink-0 align-middle">
+                          {getYearMonth(eventValue.date)}
+                        </div>
+                        <div className="text-[14px] leading-[1.6em] text-[#444444] align-middle">
+                          {eventValue.description}
+                        </div>
                       </div>
-                    )}
-
-                    {value.description !== undefined && (
-                      <div className="mt-4 text-[14px] leading-[1.6em] text-[#444444]">
-                        {value.description}
-                      </div>
-                    )}
+                    ))}
                   </div>
                 </div>
               ))}
@@ -212,7 +212,7 @@ export default function Home() {
           </div>
         </article>
       </main>
-      <footer className="self-stretch bg-green-200">여기는 footer</footer>
+      <footer className="self-stretch bg-[#666666]">여기는 footer</footer>
     </div>
   );
 }
@@ -230,22 +230,28 @@ function Section(props: { num: string; title: string }) {
   );
 }
 
+function getYearMonth(yearMonth: { year: number; month: number }): string {
+  return (
+    yearMonth.year.toLocaleString(undefined, {
+      minimumIntegerDigits: 4,
+      useGrouping: false,
+    }) +
+    ". " +
+    yearMonth.month.toLocaleString(undefined, {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    }) +
+    ". "
+  );
+}
+
 function getPeriodString(career: Career): string {
   let result: string = "";
 
   if (career.period.begin !== undefined) {
     const begin = career.period.begin;
-    let beginString =
-      begin.year.toLocaleString(undefined, {
-        minimumIntegerDigits: 4,
-        useGrouping: false,
-      }) +
-      ". " +
-      begin.month.toLocaleString(undefined, {
-        minimumIntegerDigits: 2,
-        useGrouping: false,
-      }) +
-      ". ";
+
+    let beginString = getYearMonth(begin);
     if (begin.day != undefined) {
       beginString +=
         begin.day.toLocaleString(undefined, {
@@ -258,17 +264,7 @@ function getPeriodString(career: Career): string {
   result += " - ";
   if (career.period.end !== undefined) {
     const end = career.period.end;
-    let endString =
-      end.year.toLocaleString(undefined, {
-        minimumIntegerDigits: 4,
-        useGrouping: false,
-      }) +
-      ". " +
-      end.month.toLocaleString(undefined, {
-        minimumIntegerDigits: 2,
-        useGrouping: false,
-      }) +
-      ". ";
+    let endString = getYearMonth(end);
     if (end.day != undefined) {
       endString +=
         end.day.toLocaleString(undefined, {
