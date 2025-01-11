@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Minus } from "lucide-react";
 import { Career, careers } from "./career";
 import { projects } from "./projects";
+import { skills } from "./skills";
 
 export default function Home() {
   return (
@@ -96,7 +97,7 @@ export default function Home() {
         </article>
         <article className="flex flex-col min-h-screen bg-[#F3F3F3]">
           <Section num={"03"} title={"Projects"} />
-          <div className="grow gap-x-10 gap-y-[60px] items-stretch justify-center grid grid-cols-3 pl-[29.6875%] pr-[7.8125%]">
+          <div className="grow gap-x-10 gap-y-[60px] items-stretch justify-center grid grid-cols-3 pl-[29.6875%] pr-[7.8125%] py-[120px]">
             {projects.map((value, index) => (
               <div key={index} className="flex flex-col gap-5">
                 <div className="aspect-w-3 aspect-h-2">
@@ -119,15 +120,97 @@ export default function Home() {
                       {value.company}
                     </p>
                   </div>
-                  <p className="text-[14px] text-[#444]">
-                    {value.description}
-                  </p>
+                  <p className="text-[14px] text-[#444]">{value.description}</p>
                 </div>
               </div>
             ))}
           </div>
         </article>
-        
+        <article className="flex flex-col bg-[#ECECEC]">
+          <Section num={"04"} title={"Skills"} />
+          <div className="grow gap-y-[60px] items-stretch justify-center flex flex-col pl-[29.6875%] pr-[7.8125%] py-[120px]">
+            {skills.map((skillGroup, skillGroupIndex) => (
+              <div
+                key={skillGroupIndex}
+                className="flex flex-col gap-6 items-stretch"
+              >
+                <h4 className="font-semibold text-[20px] leading-[1.5em]">
+                  {skillGroup.name}
+                </h4>
+                <div className="grow gap-x-10 gap-y-[60px] items-stretch justify-center grid grid-cols-3">
+                  {skillGroup.skills.map((skill, skillIndex) => (
+                    <div
+                      key={skillIndex}
+                      className="flex flex-col gap-5 bg-[#F0F0F0] px-6 py-7"
+                    >
+                      <div className="h-20 w-20 self-start">
+                        <Image
+                          src={skill.image_url}
+                          alt={skill.name + " 로고"}
+                          width={80}
+                          height={80}
+                          priority
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+
+                      <div className="flex flex-col gap-5 items-stretch">
+                        <h5 className="text-[16px] font-bold leading-[1.1em] pb-2 border-b-[1px] border-black">
+                          {skill.name}
+                        </h5>
+                        <ul className="list-disc list-outside pl-5">
+                          {skill.descriptions.map(
+                            (description, descriptionIndex) => (
+                              <li
+                                key={descriptionIndex}
+                                className="text-[14px] text-[#444] leading-[1.6em]"
+                              >
+                                {description}
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </article>
+        <article className="flex flex-col min-h-screen bg-[#DFDFDF]">
+          <Section num={"05"} title={"Education"} />
+          <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%] py-[120px]">
+            <div className="flex flex-col justify-start items-start border-t border-b border-black divide-y divide-black">
+              {careers.map((value, index) => (
+                <div className="flex w-full py-7" key={index}>
+                  <div className="w-[150px] font-semibold text-[14px] leading-[1.1em] shrink-0">
+                    {getPeriodString(value)}
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="font-bold text-[18px] leading-[1.1em]">
+                      {value.title}
+                    </div>
+                    {(value.team !== undefined ||
+                      value.position !== undefined) && (
+                      <div className="mt-2 font-semibold text-[16px] leading-[1.1em]">
+                        {[value.team, value.position]
+                          .filter((value) => value !== undefined)
+                          .join(" / ")}
+                      </div>
+                    )}
+
+                    {value.description !== undefined && (
+                      <div className="mt-4 text-[14px] leading-[1.6em] text-[#444444]">
+                        {value.description}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </article>
       </main>
       <footer className="self-stretch bg-green-200">여기는 footer</footer>
     </div>
