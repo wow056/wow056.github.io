@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Minus } from "lucide-react";
 import { Career, careers } from "./career";
+import { projects } from "./projects";
 
 export default function Home() {
   return (
@@ -18,21 +19,15 @@ export default function Home() {
       </header>
       <main className="flex flex-col items-stretch">
         <article className="flex flex-col min-h-screen">
-          <section className="flex items-center justify-between py-[30px]">
-            <h1 className="flex gap-8 px-[100px] items-center">
-              <p className="text-[14px] font-semibold leading-[1.3em]">01</p>
-              <p className="text-[40px] font-semibold leading-[1.3em]">Bio</p>
-            </h1>
-            <Minus size={16} className="ml-2 mr-[108px]" />
-          </section>
+          <Section num={"01"} title={"Bio"} />
           <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%]">
             <div className="flex flex-col justify-start items-start gap-5">
-              <p className="text-4xl font-semibold  leading-[1.3em]">
+              <h2 className="text-4xl font-semibold  leading-[1.3em]">
                 웹 &amp; 안드로이드 앱 개발자
-              </p>
-              <p className="text-[120px] font-semibold  leading-[1.1em]">
+              </h2>
+              <h1 className="text-[120px] font-semibold  leading-[1.1em]">
                 강민수
-              </p>
+              </h1>
               <p className="text-lg text-[#444]  leading-[1.6em]">
                 <b>안드로이드 앱</b> 개발자로 모빌리티 서비스 및 OTT 서비스
                 기업에서 근무했습니다.
@@ -66,21 +61,13 @@ export default function Home() {
             </div>
           </div>
         </article>
-        <article className="flex flex-col min-h-screen">
-          <section className="flex items-center justify-between py-[30px]">
-            <h1 className="flex gap-8 px-[100px] items-center">
-              <p className="text-[14px] font-semibold leading-[1.3em]">02</p>
-              <p className="text-[40px] font-semibold leading-[1.3em]">
-                Career
-              </p>
-            </h1>
-            <Minus size={16} className="ml-2 mr-[108px]" />
-          </section>
+        <article className="flex flex-col min-h-screen bg-[#FAFAFA]">
+          <Section num={"02"} title={"Career"} />
           <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%] py-[120px]">
             <div className="flex flex-col justify-start items-start border-t border-b border-black divide-y divide-black">
               {careers.map((value, index) => (
                 <div className="flex w-full py-7" key={index}>
-                  <div className="w-[150px] font-semibold text-[14px] leading-[1.1em]">
+                  <div className="w-[150px] font-semibold text-[14px] leading-[1.1em] shrink-0">
                     {getPeriodString(value)}
                   </div>
                   <div className="flex flex-col">
@@ -107,11 +94,59 @@ export default function Home() {
             </div>
           </div>
         </article>
+        <article className="flex flex-col min-h-screen bg-[#F3F3F3]">
+          <Section num={"03"} title={"Projects"} />
+          <div className="grow gap-x-10 gap-y-[60px] items-stretch justify-center grid grid-cols-3 pl-[29.6875%] pr-[7.8125%]">
+            {projects.map((value, index) => (
+              <div key={index} className="flex flex-col gap-5">
+                <div className="aspect-w-3 aspect-h-2">
+                  <Image
+                    src={value.image_url}
+                    alt={value.name + " 로고"}
+                    width={240}
+                    height={160}
+                    priority
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2 text-[#111]">
+                    <p className="text-[18px] font-bold leading-[1.1em]">
+                      {value.name}
+                    </p>
+                    <p className="text-[16px] font-semibold leading-[1.1em]">
+                      {value.company}
+                    </p>
+                  </div>
+                  <p className="text-[14px] text-[#444]">
+                    {value.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </article>
+        
       </main>
       <footer className="self-stretch bg-green-200">여기는 footer</footer>
     </div>
   );
 }
+function Section(props: { num: string; title: string }) {
+  return (
+    <section className="flex items-center justify-between py-[30px]">
+      <h3 className="flex gap-8 px-[100px] items-center">
+        <p className="text-[14px] font-semibold leading-[1.3em]">{props.num}</p>
+        <p className="text-[40px] font-semibold leading-[1.3em]">
+          {props.title}
+        </p>
+      </h3>
+      <Minus size={16} className="ml-2 mr-[108px]" />
+    </section>
+  );
+}
+
 function getPeriodString(career: Career): string {
   let result: string = "";
 
