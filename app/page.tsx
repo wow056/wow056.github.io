@@ -5,21 +5,14 @@ import { Career, careers } from "./career";
 import { projects } from "./projects";
 import { skills } from "./skills";
 import { educations } from "./education";
+import { Header } from "./header";
 
 export default function Home() {
   return (
     // items-center: 세로 기준 중앙 (행의 중앙), justify-items-center: 가로 중앙에 두는 것 (열의 중앙)
     <div className="grid items-end justify-items-stretch min-h-screen font-[family-name:var(--font-pretendard)] tracking-[-0.03em]">
-      <header id="sectionPin">
-        <div className="pin-wrap-sticky">
-          <div className="pin-wrap h-screen flex justify-start items-center">
-            <p className="font-semibold text-[40vh] leading-[110%] px-[100px] text-nowrap">
-              Developer
-            </p>
-          </div>
-        </div>
-      </header>
-      <main className="flex flex-col items-stretch">
+      <Header />
+      <main id="main" className="flex flex-col items-stretch">
         <article id="Bio" className="flex flex-col min-h-screen bg-white">
           <Section num={"01"} title={"Bio"} />
           <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%]">
@@ -217,9 +210,7 @@ export default function Home() {
           </div>
         </article>
       </main>
-      <footer
-        className="self-stretch bg-[#666666] py-[30px] flex items-center justify-between text-white"
-      >
+      <footer className="self-stretch bg-[#666666] py-[30px] flex items-center justify-between text-white">
         <a href="#Contact" className="flex gap-8 pl-[162px] items-center">
           <p className="text-[40px] font-semibold leading-[1.3em]">Contact</p>
           <address className="text-[18px] leading-[1.3em] not-italic">
