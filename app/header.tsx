@@ -5,10 +5,9 @@ import { useEffect, useRef, useState } from "react";
 
 export function Header() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isIntersecting, setIsIntersecting] = useState(false);
+  const isIntersecting = useRef(false);
   const ref = useRef<HTMLElement>(null);
-  const timerRef = useRef<NodeJS.Timeout>(null); // Store the timeout reference
-  const [isRedirectCancelled, setIsRedirectCancelled] = useState(false);
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading((value) => !value);
@@ -16,37 +15,23 @@ export function Header() {
   }, [setIsLoading]);
 
   useEffect(() => {
-    if (!isRedirectCancelled) {
-      if (isIntersecting) {
-        console.log("Set a new timeout when the header is in view");
-        // Set a new timeout when the header is in view
-        timerRef.current = setTimeout(() => {
-          console.log("redirect to #main");
-          setIsRedirectCancelled(true);
-          redirect("#main");
-        }, 2000);
-      } else if (timerRef.current) {
-        // Clear the timeout if the header is no longer in view
-        console.log("Clear the timeout if the header is no longer in view");
-        setIsRedirectCancelled(true);
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
+    const timer = setTimeout(() => {
+      console.log("isintersecting: ", isIntersecting.current);
+      if (isIntersecting.current) {
+        console.log("redirect to #main");
+        redirect("#main");
       }
-    }
+    }, 2000);
 
-    // Cleanup the timeout when the component unmounts
     return () => {
-      console.log("Cleanup the timeout when the component unmounts");
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
+      clearTimeout(timer);
     };
-  }, [isIntersecting ,isRedirectCancelled]);
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        setIsIntersecting(entries[0].isIntersecting);
+        isIntersecting.current = entries[0].isIntersecting;
       },
       { threshold: 0 }
     );
@@ -61,7 +46,7 @@ export function Header() {
         observer.unobserve(currentRef);
       }
     };
-  }, [setIsIntersecting, ref]);
+  }, [ref]);
 
   return (
     <header
