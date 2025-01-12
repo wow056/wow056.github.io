@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Minus } from "lucide-react";
+import { ArrowRight, Minus } from "lucide-react";
 import { Career, careers } from "./career";
 import { projects } from "./projects";
 import { skills } from "./skills";
@@ -20,7 +20,7 @@ export default function Home() {
         </div>
       </header>
       <main className="flex flex-col items-stretch">
-        <article className="flex flex-col min-h-screen">
+        <article id="Bio" className="flex flex-col min-h-screen bg-white">
           <Section num={"01"} title={"Bio"} />
           <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%]">
             <div className="flex flex-col justify-start items-start gap-5">
@@ -63,7 +63,10 @@ export default function Home() {
             </div>
           </div>
         </article>
-        <article className="flex flex-col min-h-screen bg-[#FAFAFA]">
+        <article
+          id="Career"
+          className="flex flex-col min-h-screen bg-[#FAFAFA] "
+        >
           <Section num={"02"} title={"Career"} />
           <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%] py-[120px]">
             <div className="flex flex-col justify-start items-start border-t border-b border-black divide-y divide-black">
@@ -96,7 +99,10 @@ export default function Home() {
             </div>
           </div>
         </article>
-        <article className="flex flex-col min-h-screen bg-[#F3F3F3]">
+        <article
+          id="Projects"
+          className="flex flex-col min-h-screen bg-[#F3F3F3]"
+        >
           <Section num={"03"} title={"Projects"} />
           <div className="grow gap-x-10 gap-y-[60px] items-stretch justify-center grid grid-cols-3 pl-[29.6875%] pr-[7.8125%] py-[120px]">
             {projects.map((value, index) => (
@@ -107,7 +113,6 @@ export default function Home() {
                     alt={value.name + " 로고"}
                     width={240}
                     height={160}
-                    priority
                     className="object-cover w-full h-full"
                   />
                 </div>
@@ -127,7 +132,7 @@ export default function Home() {
             ))}
           </div>
         </article>
-        <article className="flex flex-col bg-[#ECECEC]">
+        <article id="Skills" className="flex flex-col bg-[#ECECEC]">
           <Section num={"04"} title={"Skills"} />
           <div className="grow gap-y-[60px] items-stretch justify-center flex flex-col pl-[29.6875%] pr-[7.8125%] py-[120px]">
             {skills.map((skillGroup, skillGroupIndex) => (
@@ -179,7 +184,7 @@ export default function Home() {
             ))}
           </div>
         </article>
-        <article className="flex flex-col bg-[#DFDFDF]">
+        <article id="Education" className="flex flex-col bg-[#DFDFDF]">
           <Section num={"05"} title={"Education"} />
           <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%] py-[120px]">
             <div className="flex flex-col justify-start items-start border-t border-b border-black divide-y divide-black">
@@ -212,21 +217,36 @@ export default function Home() {
           </div>
         </article>
       </main>
-      <footer className="self-stretch bg-[#666666]">여기는 footer</footer>
+      <footer
+        className="self-stretch bg-[#666666] py-[30px] flex items-center justify-between text-white"
+      >
+        <a href="#Contact" className="flex gap-8 pl-[162px] items-center">
+          <p className="text-[40px] font-semibold leading-[1.3em]">Contact</p>
+          <address className="text-[18px] leading-[1.3em] not-italic">
+            wow056@naver.com
+          </address>
+        </a>
+        <ArrowRight className="mr-[108px]" size={24} />
+      </footer>
     </div>
   );
 }
 function Section(props: { num: string; title: string }) {
   return (
-    <section className="flex items-center justify-between py-[30px]">
+    <a
+      href={`#${props.title}`}
+      className={
+        "flex items-center justify-between py-[30px] sticky top-0 bg-inherit z-10"
+      }
+    >
       <h3 className="flex gap-8 px-[100px] items-center">
         <p className="text-[14px] font-semibold leading-[1.3em]">{props.num}</p>
         <p className="text-[40px] font-semibold leading-[1.3em]">
           {props.title}
         </p>
       </h3>
-      <Minus size={16} className="ml-2 mr-[108px]" />
-    </section>
+      <Minus size={24} className="ml-2 mr-[108px]" />
+    </a>
   );
 }
 
