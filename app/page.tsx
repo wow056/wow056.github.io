@@ -15,15 +15,15 @@ export default function Home() {
       <main id="main" className="flex flex-col items-stretch">
         <article id="Bio" className="flex flex-col min-h-screen bg-white">
           <Section num={"01"} title={"Bio"} />
-          <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%]">
+          <div className="grow flex flex-col gap-7 items-stretch justify-center px-5 md:pl-[29.6875%] md:pr-[7.8125%]">
             <div className="flex flex-col justify-start items-start gap-5">
-              <h2 className="text-4xl font-semibold  leading-[1.3em]">
+              <h2 className="text-[18px] md:text-[36px] font-semibold  leading-[1.3em]">
                 웹 &amp; 안드로이드 앱 개발자
               </h2>
-              <h1 className="text-[120px] font-semibold  leading-[1.1em]">
+              <h1 className="text-[60px] md:text-[120px] font-semibold  leading-[1.1em]">
                 강민수
               </h1>
-              <p className="text-lg text-[#444]  leading-[1.6em]">
+              <p className="text-[14px] md:text-[18px] text-[#444]  leading-[1.6em]">
                 <b>안드로이드 앱</b> 개발자로 모빌리티 서비스 및 OTT 서비스
                 기업에서 근무했습니다.
                 <br />
@@ -34,7 +34,7 @@ export default function Home() {
                 <b>검증 엔지니어</b>로 근무하고 있습니다.
               </p>
             </div>
-            <div className="flex justify-start items-start gap-5">
+            <div className="flex justify-start items-start gap-3 md:gap-5">
               <Link href={"https://github.com/wow056"}>
                 <Image
                   src="/github.svg"
@@ -42,6 +42,7 @@ export default function Home() {
                   width={60}
                   height={60}
                   priority
+                  className="size-[48px] md:size-[60px]"
                 />
               </Link>
               <Link href={"https://www.linkedin.com/in/minsu-kang-0821a2140/"}>
@@ -51,6 +52,7 @@ export default function Home() {
                   width={60}
                   height={60}
                   priority
+                  className="size-[48px] md:size-[60px]"
                 />
               </Link>
             </div>
@@ -58,23 +60,23 @@ export default function Home() {
         </article>
         <article
           id="Career"
-          className="flex flex-col min-h-screen bg-[#FAFAFA] "
+          className="flex flex-col min-h-screen bg-[#FAFAFA]"
         >
           <Section num={"02"} title={"Career"} />
-          <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%] py-[120px]">
+          <div className="grow flex flex-col gap-7 items-stretch justify-center px-5 md:pl-[29.6875%] md:pr-[7.8125%] py-[60px] md:py-[120px]">
             <div className="flex flex-col justify-start items-start border-t border-b border-black divide-y divide-black">
               {careers.map((value, index) => (
-                <div className="flex w-full py-7" key={index}>
-                  <div className="w-[150px] font-semibold text-[14px] leading-[1.1em] shrink-0">
+                <div className="flex w-full py-7 gap-6 md:gap-10" key={index}>
+                  <div className="w-[100px] md:w-[150px] font-semibold text-[10px] md:text-[14px] leading-[1.1em] shrink-0">
                     {getPeriodString(value)}
                   </div>
                   <div className="flex flex-col">
-                    <div className="font-bold text-[18px] leading-[1.1em]">
+                    <div className="font-bold text-[16px] md:text-[18px] leading-[1.1em]">
                       {value.title}
                     </div>
                     {(value.team !== undefined ||
                       value.position !== undefined) && (
-                      <div className="mt-2 font-semibold text-[16px] leading-[1.1em]">
+                      <div className="mt-2 font-semibold text-[14px] md:text-[16px] leading-[1.1em]">
                         {[value.team, value.position]
                           .filter((value) => value !== undefined)
                           .join(" / ")}
@@ -82,7 +84,7 @@ export default function Home() {
                     )}
 
                     {value.description !== undefined && (
-                      <div className="mt-4 text-[14px] leading-[1.6em] text-[#444444]">
+                      <div className="mt-4 text-[12px] md:text-[14px] leading-[1.6em] text-[#444444]">
                         {value.description}
                       </div>
                     )}
@@ -97,7 +99,7 @@ export default function Home() {
           className="flex flex-col min-h-screen bg-[#F3F3F3]"
         >
           <Section num={"03"} title={"Projects"} />
-          <div className="grow gap-x-10 gap-y-[60px] items-stretch justify-center grid grid-cols-3 pl-[29.6875%] pr-[7.8125%] py-[120px]">
+          <div className="grow gap-x-[9px] md:gap-x-10 gap-y-7 md:gap-y-[60px] items-stretch justify-center grid grid-cols-2 md:grid-cols-3 px-5 md:pl-[29.6875%] md:pr-[7.8125%] py-[60px] md:py-[120px]">
             {projects.map((value, index) => (
               <div key={index} className="flex flex-col gap-5">
                 <div className="aspect-w-3 aspect-h-2">
@@ -112,14 +114,16 @@ export default function Home() {
 
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2 text-[#111]">
-                    <p className="text-[18px] font-bold leading-[1.1em]">
+                    <p className="text-[16px] md:text-[18px] font-bold leading-[1.1em]">
                       {value.name}
                     </p>
-                    <p className="text-[16px] font-semibold leading-[1.1em]">
+                    <p className="text-[14px] md:text-[16px] font-semibold leading-[1.1em]">
                       {value.company}
                     </p>
                   </div>
-                  <p className="text-[14px] text-[#444]">{value.description}</p>
+                  <p className="text-[12px] md:text-[14px] text-[#444]">
+                    {value.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -127,16 +131,16 @@ export default function Home() {
         </article>
         <article id="Skills" className="flex flex-col bg-[#ECECEC]">
           <Section num={"04"} title={"Skills"} />
-          <div className="grow gap-y-[60px] items-stretch justify-center flex flex-col pl-[29.6875%] pr-[7.8125%] py-[120px]">
+          <div className="grow gap-y-10 md:gap-y-[60px] items-stretch justify-center flex flex-col px-5 md:pl-[29.6875%] md:pr-[7.8125%] py-[60px] md:py-[120px]">
             {skills.map((skillGroup, skillGroupIndex) => (
               <div
                 key={skillGroupIndex}
-                className="flex flex-col gap-6 items-stretch"
+                className="flex flex-col gap-3 md:gap-6 items-stretch"
               >
-                <h4 className="font-semibold text-[20px] leading-[1.5em]">
+                <h4 className="font-semibold text-[18px] md:text-[20px] leading-[1.5em]">
                   {skillGroup.name}
                 </h4>
-                <div className="grow gap-x-10 gap-y-[60px] items-stretch justify-center grid grid-cols-3">
+                <div className="grow gap-3 md:gap-x-10 md:gap-y-[60px] items-stretch justify-center grid grid-cols-1 md:grid-cols-3">
                   {skillGroup.skills.map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
@@ -179,23 +183,23 @@ export default function Home() {
         </article>
         <article id="Education" className="flex flex-col bg-[#DFDFDF]">
           <Section num={"05"} title={"Education"} />
-          <div className="grow flex flex-col gap-7 items-stretch justify-center pl-[29.6875%] pr-[7.8125%] py-[120px]">
+          <div className="grow flex flex-col gap-7 items-stretch justify-center px-5 md:pl-[29.6875%] md:pr-[7.8125%] py-[120px]">
             <div className="flex flex-col justify-start items-start border-t border-b border-black divide-y divide-black">
               {educations.map((education, educationIndex) => (
                 <div
                   className="flex flex-col w-full py-7 gap-4"
                   key={educationIndex}
                 >
-                  <h3 className="ml-[150px] text-[18px] font-bold">
+                  <h3 className="ml-[124px] md:ml-[190px] text-[18px] font-bold">
                     {education.title}
                   </h3>
                   <div className="flex flex-col gap-[9px]">
                     {education.events.map((eventValue, eventIndex) => (
                       <div
                         key={eventIndex}
-                        className="flex flex-row w-full items-center leading-[1.1em] "
+                        className="flex flex-row w-full items-center leading-[1.1em] gap-6 md:gap-10"
                       >
-                        <div className="w-[150px] font-semibold text-[14px] leading-[1.1em] shrink-0 align-middle">
+                        <div className="w-[100px] md:w-[150px] font-semibold text-[14px] leading-[1.1em] shrink-0 align-middle">
                           {getYearMonth(eventValue.date)}
                         </div>
                         <div className="text-[14px] leading-[1.6em] text-[#444444] align-middle">
@@ -210,14 +214,17 @@ export default function Home() {
           </div>
         </article>
       </main>
-      <footer className="self-stretch bg-[#666666] py-[30px] flex items-center justify-between text-white">
-        <a href="#Contact" className="flex gap-8 pl-[162px] items-center">
-          <p className="text-[40px] font-semibold leading-[1.3em]">Contact</p>
-          <address className="text-[18px] leading-[1.3em] not-italic">
+      <footer className="self-stretch bg-[#666666] py-[16px] md:py-[30px] flex items-center justify-between text-white">
+        <a
+          href="#Contact"
+          className="flex gap-8 pl-5 md:pl-[162px] items-center"
+        >
+          <p className="text-[24px] md:text-[40px] font-semibold leading-[1.3em]">Contact</p>
+          <address className="text-[14px] md:text-[18px] leading-[1.3em] not-italic">
             wow056@naver.com
           </address>
         </a>
-        <ArrowRight className="mr-[108px]" size={24} />
+        <ArrowRight className="mr-5 md:mr-[108px]" size={24} />
       </footer>
     </div>
   );
@@ -227,16 +234,18 @@ function Section(props: { num: string; title: string }) {
     <a
       href={`#${props.title}`}
       className={
-        "flex items-center justify-between py-[30px] sticky top-0 bg-inherit z-10"
+        "flex items-center justify-between py-[16px] md:py-[30px] sticky top-0 bg-inherit z-10"
       }
     >
-      <h3 className="flex gap-8 px-[100px] items-center">
-        <p className="text-[14px] font-semibold leading-[1.3em]">{props.num}</p>
-        <p className="text-[40px] font-semibold leading-[1.3em]">
+      <h3 className="flex gap-8 px-5 md:px-[100px] items-center">
+        <p className="text-[10px] md:text-[14px] font-semibold leading-[1.3em]">
+          {props.num}
+        </p>
+        <p className="text-[24px] md:text-[40px] font-semibold leading-[1.3em]">
           {props.title}
         </p>
       </h3>
-      <Minus size={24} className="ml-2 mr-[108px]" />
+      <Minus size={24} className="mr-5 md:mr-[108px] " />
     </a>
   );
 }

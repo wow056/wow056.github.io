@@ -51,7 +51,7 @@ export function Header() {
   return (
     <header
       ref={ref}
-      className="h-screen flex flex-col justify-center items-center"
+      className="h-screen flex flex-col justify-center px-5 items-start md:items-center"
     >
       <p
         className={classNames(
@@ -78,7 +78,8 @@ export function Header() {
         적용하는
       </p>
       <p className="font-normal text-[40px] leading-[1.4em] mt-10">
-        개발자 <b className="font-extrabold">강민수</b> 입니다
+        개발자 <br className="inline md:hidden" />
+        <b className="font-extrabold">강민수</b> 입니다
       </p>
     </header>
   );
