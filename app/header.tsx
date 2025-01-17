@@ -1,5 +1,6 @@
 "use client";
 import classNames from "classnames";
+import { ChevronDown } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -49,38 +50,39 @@ export function Header() {
   }, [ref]);
 
   return (
-    <header
-      ref={ref}
-      className="h-screen flex flex-col justify-center px-5 items-start md:items-center"
-    >
-      <p
-        className={classNames(
-          "transition duration-[500ms] font-bold text-[60px] leading-[1.6em] text-[#111111]",
-          isLoading ? "text-[#111111]" : "text-[#ECECEC]"
-        )}
-      >
-        새로운 것을
-      </p>
-      <p
-        className={classNames(
-          "transition delay-[500ms] duration-[500ms]  font-bold text-[60px] leading-[1.6em] text-[#111111]",
-          isLoading ? "text-[#111111]" : "text-[#ECECEC]"
-        )}
-      >
-        공부하고
-      </p>
-      <p
-        className={classNames(
-          "transition delay-[1000ms] duration-[500ms]  font-bold text-[60px] leading-[1.6em] text-[#111111]",
-          isLoading ? "text-[#111111]" : "text-[#ECECEC]"
-        )}
-      >
-        적용하는
-      </p>
-      <p className="font-normal text-[40px] leading-[1.4em] mt-10">
-        개발자 <br className="inline md:hidden" />
-        <b className="font-extrabold">강민수</b> 입니다
-      </p>
+    <header ref={ref} className="h-screen flex flex-col justify-between items-center py-[30px]">
+      <div className="h-8"/>
+      <header className="flex flex-col justify-center px-5 items-start md:items-center self-stretch">
+        <p
+          className={classNames(
+            "transition duration-[500ms] font-bold text-[60px] leading-[1.6em] text-[#111111]",
+            isLoading ? "text-[#111111]" : "text-[#ECECEC]"
+          )}
+        >
+          새로운 것을
+        </p>
+        <p
+          className={classNames(
+            "transition delay-[500ms] duration-[500ms]  font-bold text-[60px] leading-[1.6em] text-[#111111]",
+            isLoading ? "text-[#111111]" : "text-[#ECECEC]"
+          )}
+        >
+          공부하고
+        </p>
+        <p
+          className={classNames(
+            "transition delay-[1000ms] duration-[500ms]  font-bold text-[60px] leading-[1.6em] text-[#111111]",
+            isLoading ? "text-[#111111]" : "text-[#ECECEC]"
+          )}
+        >
+          적용하는
+        </p>
+        <p className="font-normal text-[40px] leading-[1.4em] mt-10">
+          개발자 <br className="inline md:hidden" />
+          <b className="font-extrabold">강민수</b> 입니다
+        </p>
+      </header>
+      <ChevronDown size={32}/>
     </header>
   );
 }
