@@ -13,58 +13,202 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@keyframes move {
-	to {
-		/* Move horizontally so that right edge is aligned against the viewport */
-		transform: translateX(calc(-100% + 100vw));
-	}
-}
-
-#sectionPin {
-	/* Stretch it out, so that we create room for the horizontal scroll animation */
-	height: 500vh;
-	overflow: visible; /* To make position sticky work … */
-
-	view-timeline-name: --section-pin-tl;
-	view-timeline-axis: block;
-}
-
-.pin-wrap-sticky {
-	/* Stick to Top */
-	height: 100vh;
-	width: 100vw;
-	position: sticky;
-	top: 0;
-
-	width: 100vw;
-	overflow-x: hidden;
-}
-
-.pin-wrap {
-	height: 100vh;
-	width: 200vmax;
-
-	/* Hook animation */
-	will-change: transform;
-	animation: linear move forwards;
-
-	/* Link animation to view-timeline */
-	animation-timeline: --section-pin-tl;
-	animation-range: contain 0% contain 100%;
-}
-
 .aspect-w-3 {
-	position: relative;
-	padding-top: calc(100% / 3 * 2);
+  position: relative;
+  padding-top: calc(100% / 3 * 2);
 }
 .aspect-h-2 {
-	height: 0;
-	overflow: hidden;
+  height: 0;
+  overflow: hidden;
 }
 .aspect-w-3 > img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+:root {
+  --title-font-size-from: 24px;
+  --title-font-size-to: 18px;
+  --section-height-from: 63px;
+  --section-height-to: 38px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --title-font-size-from: 40px;
+    --title-font-size-to: 28px;
+    --section-height-from: 112px;
+    --section-height-to: 58px;
+  }
+}
+
+@keyframes sticky-parallax-header-font-size {
+  from {
+    font-size: var(--title-font-size-from);
+  }
+  to {
+    font-size: var(--title-font-size-to);
+  }
+}
+
+@keyframes sticky-parallax-header-size {
+  from {
+    height: var(--section-height-from);
+    color: #111111;
+  }
+  to {
+    height: var(--section-height-to);
+    color: #999999;
+  }
+}
+
+#sticky-parallax-header-first {
+  position: sticky;
+  top: 0;
+  height: var(--section-height-from);
+
+  animation: sticky-parallax-header-size linear forwards;
+  animation-timeline: scroll();
+  animation-range: 200vh 300vh;
+}
+
+#sticky-parallax-title-first {
+  font-size: var(--title-font-size-from);
+  animation: sticky-parallax-header-font-size linear forwards;
+  animation-timeline: scroll();
+  animation-range: 200vh 300vh;
+}
+
+@keyframes sticky-parallax-header-move-second {
+  from {
+    top: var(--section-height-from);
+  }
+  to {
+    top: var(--section-height-to);
+  }
+}
+
+@keyframes sticky-parallax-header-size-second {
+  from {
+    height: 112px;
+    color: #111111;
+  }
+  to {
+    height: 58px;
+    color: #999999;
+  }
+}
+
+#sticky-parallax-header-second {
+  position: sticky;
+  top: var(--section-height-from);
+  height: var(--section-height-from);
+
+  animation:
+    sticky-parallax-header-move-second linear forwards,
+    sticky-parallax-header-size linear forwards;
+  animation-timeline: scroll();
+  animation-range:
+    200vh 300vh,
+    300vh 400vh;
+}
+
+#sticky-parallax-title-second {
+  font-size: var(--title-font-size-from);
+  animation: sticky-parallax-header-font-size linear forwards;
+  animation-timeline: scroll();
+  animation-range: 300vh 400vh;
+}
+
+@keyframes sticky-parallax-header-move-third {
+  from {
+    top: calc(var(--section-height-to) + var(--section-height-from));
+  }
+  to {
+    top: calc(2 * var(--section-height-to));
+  }
+}
+
+#sticky-parallax-header-third {
+  position: sticky;
+  top: calc(var(--section-height-to) + var(--section-height-from));
+  height: var(--section-height-from);
+
+  animation:
+    sticky-parallax-header-move-third linear forwards,
+    sticky-parallax-header-size linear forwards;
+  animation-timeline: scroll();
+  animation-range:
+    300vh 400vh,
+    400vh 500vh;
+}
+
+#sticky-parallax-title-third {
+  font-size: var(--title-font-size-from);
+  animation: sticky-parallax-header-font-size linear forwards;
+  animation-timeline: scroll();
+  animation-range: 400vh 500vh;
+}
+
+@keyframes sticky-parallax-header-move-fourth {
+  from {
+    top: calc(2 * var(--section-height-to) + var(--section-height-from));
+  }
+  to {
+    top: calc(3 * var(--section-height-to));
+  }
+}
+
+#sticky-parallax-header-fourth {
+  position: sticky;
+  top: calc(2 * var(--section-height-to) + var(--section-height-from));
+  height: var(--section-height-from);
+
+  animation:
+    sticky-parallax-header-move-fourth linear forwards,
+    sticky-parallax-header-size linear forwards;
+  animation-timeline: scroll();
+  animation-range:
+    400vh 500vh,
+    500vh 600vh;
+}
+
+#sticky-parallax-title-fourth {
+  font-size: var(--title-font-size-from);
+  animation: sticky-parallax-header-font-size linear forwards;
+  animation-timeline: scroll();
+  animation-range: 500vh 600vh;
+}
+
+@keyframes sticky-parallax-header-move-fifth {
+  from {
+    top: calc(3 * var(--section-height-to) + var(--section-height-from));
+  }
+  to {
+    top: calc(4 * var(--section-height-to));
+  }
+}
+
+#sticky-parallax-header-fifth {
+  position: sticky;
+  top: calc(3 * var(--section-height-to) + var(--section-height-from));
+  height: var(--section-height-from);
+
+  animation:
+    sticky-parallax-header-move-fifth linear forwards,
+    sticky-parallax-header-size linear forwards;
+  animation-timeline: scroll();
+  animation-range:
+    500vh 600vh,
+    600vh 700vh;
+}
+
+#sticky-parallax-title-fifth {
+  font-size: var(--title-font-size-from);
+  animation: sticky-parallax-header-font-size linear forwards;
+  animation-timeline: scroll();
+  animation-range: 600vh 700vh;
 }

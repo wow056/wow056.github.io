@@ -1,22 +1,29 @@
-"use client";
+'use client';
 
-import classNames from "classnames";
-import { Minus } from "lucide-react";
+import classNames from 'classnames';
+import { Minus } from 'lucide-react';
 
-export function Section(props: { num: number; title: string; className?: string }) {
+export function Section(props: {
+  num: number;
+  title: string;
+  className?: string;
+  id?: string;
+  titleId?: string;
+}) {
   return (
     <a
+      id={props.id}
       href={`#${props.title}`}
       className={classNames(
-        "flex items-center justify-between md:h-[224px] h-[126px] py-[16px] md:py-[30px] sticky bg-inherit z-10",
+        'flex items-center justify-between md:h-[112px] h-[54px] sticky z-10',
         props.className
       )}
     >
       <h3 className="flex gap-8 px-5 md:px-[100px] items-center">
         <p className="text-[10px] md:text-[14px] font-semibold leading-[1.3em]">
-          {String(props.num).padStart(2, "0")}
+          {String(props.num).padStart(2, '0')}
         </p>
-        <p className="text-[24px] md:text-[40px] font-semibold leading-[1.3em]">
+        <p id={props.titleId} className="font-semibold leading-[1.3em] p-title">
           {props.title}
         </p>
       </h3>
