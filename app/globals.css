@@ -34,6 +34,12 @@ body {
   --title-font-size-to: 18px;
   --section-height-from: 63px;
   --section-height-to: 38px;
+
+  --header-size-range-first: 200vh 300vh;
+  --header-size-range-second: 300vh 400vh;
+  --header-size-range-third: 450vh 550vh;
+  --header-size-range-fourth: 650vh 750vh;
+  --header-size-range-fifth: 900vh 1000vh;
 }
 
 @media (min-width: 768px) {
@@ -42,6 +48,12 @@ body {
     --title-font-size-to: 28px;
     --section-height-from: 112px;
     --section-height-to: 58px;
+
+    --header-size-range-first: 200vh 300vh;
+    --header-size-range-second: 300vh 400vh;
+    --header-size-range-third: 400vh 500vh;
+    --header-size-range-fourth: 500vh 600vh;
+    --header-size-range-fifth: 600vh 700vh;
   }
 }
 
@@ -72,13 +84,13 @@ body {
 
   animation: sticky-parallax-header-size linear forwards;
   animation-timeline: scroll();
-  animation-range: 200vh 300vh;
+  animation-range: var(--header-size-range-first);
 
   .p-title {
     font-size: var(--title-font-size-from);
     animation: sticky-parallax-header-font-size linear forwards;
     animation-timeline: scroll();
-    animation-range: 200vh 300vh;
+    animation-range: var(--header-size-range-first);
   }
 }
 
@@ -100,15 +112,14 @@ body {
     sticky-parallax-header-move-second linear forwards,
     sticky-parallax-header-size linear forwards;
   animation-timeline: scroll();
-  animation-range:
-    200vh 300vh,
-    300vh 400vh;
+  animation-range: var(--header-size-range-first),
+    var(--header-size-range-second);
 
   .p-title {
     font-size: var(--title-font-size-from);
     animation: sticky-parallax-header-font-size linear forwards;
     animation-timeline: scroll();
-    animation-range: 300vh 400vh;
+    animation-range: var(--header-size-range-second);
   }
 }
 
@@ -130,15 +141,14 @@ body {
     sticky-parallax-header-move-third linear forwards,
     sticky-parallax-header-size linear forwards;
   animation-timeline: scroll();
-  animation-range:
-    300vh 400vh,
-    400vh 500vh;
+  animation-range: var(--header-size-range-second),
+    var(--header-size-range-third);
 
   .p-title {
     font-size: var(--title-font-size-from);
     animation: sticky-parallax-header-font-size linear forwards;
     animation-timeline: scroll();
-    animation-range: 400vh 500vh;
+    animation-range: var(--header-size-range-third);
   }
 }
 
@@ -160,15 +170,14 @@ body {
     sticky-parallax-header-move-fourth linear forwards,
     sticky-parallax-header-size linear forwards;
   animation-timeline: scroll();
-  animation-range:
-    400vh 500vh,
-    500vh 600vh;
+  animation-range: var(--header-size-range-third),
+    var(--header-size-range-fourth);
 
   .p-title {
     font-size: var(--title-font-size-from);
     animation: sticky-parallax-header-font-size linear forwards;
     animation-timeline: scroll();
-    animation-range: 500vh 600vh;
+    animation-range: var(--header-size-range-fourth);
   }
 }
 
@@ -190,13 +199,12 @@ body {
     sticky-parallax-header-move-fifth linear forwards,
     sticky-parallax-header-size linear forwards;
   animation-timeline: scroll();
-  animation-range:
-    500vh 600vh,
-    600vh 700vh;
+  animation-range: var(--header-size-range-fourth),
+    var(--header-size-range-fifth);
   .p-title {
     font-size: var(--title-font-size-from);
     animation: sticky-parallax-header-font-size linear forwards;
     animation-timeline: scroll();
-    animation-range: 600vh 700vh;
+    animation-range: var(--header-size-range-fifth);
   }
 }
