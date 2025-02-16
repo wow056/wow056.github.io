@@ -23,7 +23,7 @@ export function Section(props: {
         <p className="text-[10px] md:text-[14px] font-semibold leading-[1.3em]">
           {String(props.num).padStart(2, '0')}
         </p>
-        <p id={props.titleId} className="font-semibold leading-[1.3em] p-title">
+        <p className="font-semibold leading-[1.3em] p-title">
           {props.title}
         </p>
       </h3>

@@ -73,13 +73,13 @@ body {
   animation: sticky-parallax-header-size linear forwards;
   animation-timeline: scroll();
   animation-range: 200vh 300vh;
-}
 
-#sticky-parallax-title-first {
-  font-size: var(--title-font-size-from);
-  animation: sticky-parallax-header-font-size linear forwards;
-  animation-timeline: scroll();
-  animation-range: 200vh 300vh;
+  .p-title {
+    font-size: var(--title-font-size-from);
+    animation: sticky-parallax-header-font-size linear forwards;
+    animation-timeline: scroll();
+    animation-range: 200vh 300vh;
+  }
 }
 
 @keyframes sticky-parallax-header-move-second {
@@ -88,17 +88,6 @@ body {
   }
   to {
     top: var(--section-height-to);
-  }
-}
-
-@keyframes sticky-parallax-header-size-second {
-  from {
-    height: 112px;
-    color: #111111;
-  }
-  to {
-    height: 58px;
-    color: #999999;
   }
 }
 
@@ -114,13 +103,13 @@ body {
   animation-range:
     200vh 300vh,
     300vh 400vh;
-}
 
-#sticky-parallax-title-second {
-  font-size: var(--title-font-size-from);
-  animation: sticky-parallax-header-font-size linear forwards;
-  animation-timeline: scroll();
-  animation-range: 300vh 400vh;
+  .p-title {
+    font-size: var(--title-font-size-from);
+    animation: sticky-parallax-header-font-size linear forwards;
+    animation-timeline: scroll();
+    animation-range: 300vh 400vh;
+  }
 }
 
 @keyframes sticky-parallax-header-move-third {
@@ -144,13 +133,13 @@ body {
   animation-range:
     300vh 400vh,
     400vh 500vh;
-}
 
-#sticky-parallax-title-third {
-  font-size: var(--title-font-size-from);
-  animation: sticky-parallax-header-font-size linear forwards;
-  animation-timeline: scroll();
-  animation-range: 400vh 500vh;
+  .p-title {
+    font-size: var(--title-font-size-from);
+    animation: sticky-parallax-header-font-size linear forwards;
+    animation-timeline: scroll();
+    animation-range: 400vh 500vh;
+  }
 }
 
 @keyframes sticky-parallax-header-move-fourth {
@@ -174,13 +163,13 @@ body {
   animation-range:
     400vh 500vh,
     500vh 600vh;
-}
 
-#sticky-parallax-title-fourth {
-  font-size: var(--title-font-size-from);
-  animation: sticky-parallax-header-font-size linear forwards;
-  animation-timeline: scroll();
-  animation-range: 500vh 600vh;
+  .p-title {
+    font-size: var(--title-font-size-from);
+    animation: sticky-parallax-header-font-size linear forwards;
+    animation-timeline: scroll();
+    animation-range: 500vh 600vh;
+  }
 }
 
 @keyframes sticky-parallax-header-move-fifth {
@@ -204,11 +193,10 @@ body {
   animation-range:
     500vh 600vh,
     600vh 700vh;
-}
-
-#sticky-parallax-title-fifth {
-  font-size: var(--title-font-size-from);
-  animation: sticky-parallax-header-font-size linear forwards;
-  animation-timeline: scroll();
-  animation-range: 600vh 700vh;
+  .p-title {
+    font-size: var(--title-font-size-from);
+    animation: sticky-parallax-header-font-size linear forwards;
+    animation-timeline: scroll();
+    animation-range: 600vh 700vh;
+  }
 }

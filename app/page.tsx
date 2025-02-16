@@ -19,7 +19,6 @@ export default function Home() {
           num={1}
           title={'Bio'}
           id="sticky-parallax-header-first"
-          titleId="sticky-parallax-title-first"
           className="bg-white"
         />
         <div className="sticky-parallex-body flex flex-col gap-7 items-stretch min-h-[calc(100vh-18px)] justify-center px-5 md:pl-[29.6875%] md:pr-[7.8125%] bg-white">
@@ -69,7 +68,6 @@ export default function Home() {
           num={2}
           title={'Career'}
           id="sticky-parallax-header-second"
-          titleId="sticky-parallax-title-second"
           className="bg-[#FAFAFA]"
         />
         <div className="bg-[#FAFAFA] flex flex-col gap-7 items-stretch justify-center px-5 md:pl-[29.6875%] md:pr-[7.8125%] py-[60px] md:py-[120px]">
@@ -107,7 +105,6 @@ export default function Home() {
           num={3}
           title={'Projects'}
           id="sticky-parallax-header-third"
-          titleId="sticky-parallax-title-third"
           className="bg-[#F3F3F3]"
         />
         <div className="bg-[#F3F3F3] gap-x-[9px] md:gap-x-10 gap-y-7 md:gap-y-[60px] items-stretch justify-center grid grid-cols-2 md:grid-cols-3 px-5 md:pl-[29.6875%] md:pr-[7.8125%] py-[60px] md:py-[120px]">
@@ -144,7 +141,6 @@ export default function Home() {
           num={4}
           title={'Skills'}
           id="sticky-parallax-header-fourth"
-          titleId="sticky-parallax-title-fourth"
           className="bg-[#ECECEC]"
         />
         <div className="bg-[#ECECEC] gap-y-10 md:gap-y-[60px] items-stretch justify-center flex flex-col px-5 md:pl-[29.6875%] md:pr-[7.8125%] py-[60px] md:py-[120px]">
@@ -201,7 +197,6 @@ export default function Home() {
           num={5}
           title={'Education'}
           id="sticky-parallax-header-fifth"
-          titleId="sticky-parallax-title-fifth"
           className="bg-[#DFDFDF]"
         />
         <div className="bg-[#DFDFDF] flex flex-col gap-7 items-stretch justify-center px-5 md:pl-[29.6875%] md:pr-[7.8125%] py-[120px]">
