@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, X } from 'lucide-react';
@@ -9,11 +11,34 @@ import { Header } from './header';
 import { Section } from './section';
 import { Dialog } from 'radix-ui';
 import { ProjectContent } from './project-content';
+import { useState } from 'react';
+import { getYearMonth } from './utils';
+
+type DialogState =
+  | {
+      isOpen: false;
+    }
+  | {
+      isOpen: true;
+      projectContentIndex: number;
+    };
 
 export default function Home() {
+  const [dialogState, setDialogState] = useState<DialogState>({
+    isOpen: false,
+  });
+
+  const onOpenChange = (value: boolean) => {
+    if (!value) {
+      setDialogState({
+        isOpen: false,
+      });
+    }
+  };
+
   return (
     // items-center: 세로 기준 중앙 (행의 중앙), justify-items-center: 가로 중앙에 두는 것 (열의 중앙)
-    <Dialog.Root>
+    <Dialog.Root open={dialogState.isOpen} onOpenChange={onOpenChange}>
       <div className="grid items-end justify-items-stretch min-h-screen font-[family-name:var(--font-pretendard)] tracking-[-0.03em]">
         <Header />
         <main id="main" className="flex flex-col items-stretch">
@@ -111,34 +136,41 @@ export default function Home() {
           />
           <div className="bg-[#F3F3F3] gap-x-[9px] md:gap-x-10 gap-y-7 md:gap-y-[60px] items-stretch justify-center grid grid-cols-2 md:grid-cols-3 px-5 md:pl-[29.6875%] md:pr-[7.8125%] py-[60px] md:py-[120px]">
             {projects.map((value, index) => (
-              <Dialog.Trigger key={index} asChild>
-                <button className="flex flex-col justify-start items-stretch">
-                  <div className="flex flex-col gap-5">
-                    <div className="aspect-w-3 aspect-h-2">
-                      <Image
-                        src={value.image_url}
-                        alt={value.name + ' 로고'}
-                        width={240}
-                        height={160}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <div className="flex flex-col text-start gap-4">
-                      <div className="flex flex-col gap-2 text-[#111]">
-                        <p className="text-[16px] md:text-[18px] font-bold leading-[1.1em]">
-                          {value.name}
-                        </p>
-                        <p className="text-[14px] md:text-[16px] font-semibold leading-[1.1em]">
-                          {value.company}
-                        </p>
-                      </div>
-                      <p className="text-[12px] md:text-[14px] text-[#444]">
-                        {value.description}
+              <button
+                className="flex flex-col justify-start items-stretch"
+                onClick={() => {
+                  setDialogState({
+                    isOpen: true,
+                    projectContentIndex: index,
+                  });
+                }}
+                key={index}
+              >
+                <div className="flex flex-col gap-5">
+                  <div className="aspect-w-3 aspect-h-2">
+                    <Image
+                      src={value.image_url}
+                      alt={value.name + ' 로고'}
+                      width={240}
+                      height={160}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <div className="flex flex-col text-start gap-4">
+                    <div className="flex flex-col gap-2 text-[#111]">
+                      <p className="text-[16px] md:text-[18px] font-bold leading-[1.1em]">
+                        {value.name}
+                      </p>
+                      <p className="text-[14px] md:text-[16px] font-semibold leading-[1.1em]">
+                        {value.company}
                       </p>
                     </div>
+                    <p className="text-[12px] md:text-[14px] text-[#444]">
+                      {value.description}
+                    </p>
                   </div>
-                </button>
-              </Dialog.Trigger>
+                </div>
+              </button>
             ))}
           </div>
           <div id="Skills" />
@@ -251,7 +283,11 @@ export default function Home() {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-20 items-center bg-black/80 data-[state=open]:animate-overlayShow" />
         <Dialog.Content className=" bg-white fixed z-20 bottom-0 inset-x-0 h-fit md:w-fit md:inset-0  md:mx-auto md:my-auto max-h-[85vh] md:max-w-[90vw] rounded-t-xl md:rounded-b-xl  p-10 pr-12 shadow-[var(--shadow-6)] focus:outline-none data-[state=open]:animate-contentShow">
-          <ProjectContent />
+          <ProjectContent
+            index={
+              dialogState.isOpen ? dialogState.projectContentIndex : undefined
+            }
+          />
           <div className="flex justify-start items-start gap-8"></div>
           <Dialog.Close asChild>
             <button
@@ -264,21 +300,6 @@ export default function Home() {
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
-  );
-}
-
-function getYearMonth(yearMonth: { year: number; month: number }): string {
-  return (
-    yearMonth.year.toLocaleString(undefined, {
-      minimumIntegerDigits: 4,
-      useGrouping: false,
-    }) +
-    '. ' +
-    yearMonth.month.toLocaleString(undefined, {
-      minimumIntegerDigits: 2,
-      useGrouping: false,
-    }) +
-    '. '
   );
 }
 
